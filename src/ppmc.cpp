@@ -25,9 +25,7 @@ int main() {
 
   // set up integrator
   auto [result, stddev] = mc::Integrate2D(
-       [&up_quark_pdf     , &down_quark_pdf,
-        &anti_up_quark_pdf, &anti_down_quark_pdf]
-       (double x, double y) {
+       [](double x, double y) {
          return x*y;
        },
        [&](double x) { return 0.;},
