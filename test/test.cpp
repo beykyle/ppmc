@@ -15,7 +15,7 @@ int main() {
        [] (double x) { return 100.;  },
        -12.3, 0.007, 
        1E-12,
-       true,1000000
+       false,1000000
       );
 
   auto d = fabs((result - expected)/expected);
