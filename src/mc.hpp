@@ -9,13 +9,17 @@
 namespace mc {
 //helpers
 double mean(double r, uint64_t count);
+
 double stddev(double r, double r2, uint64_t count);
+
 double relError(double r, double r2, uint64_t count);
+
 double vol(double length_tally, double height_tally, 
-           double width, uint64_t count);
-double stddevVol(double length, double height, 
-                double length2, double height2, 
-                double width, uint64_t count);
+           double width       , uint64_t count);
+
+double stddevVol(double length  , double height, 
+                 double length2 , double height2, 
+                 double width   , uint64_t count);
 
 using Uniform = std::uniform_real_distribution<>;
 
@@ -57,6 +61,7 @@ Integrate2D(Func f,
 
     // score length tallies
     const double smpl_length = upper(x) - lower(x);
+    assert(smpl_length > 0);
     length   += smpl_length;
     length2  += smpl_length*smpl_length;
 
@@ -75,17 +80,25 @@ Integrate2D(Func f,
 
     // print current tallies
     if (loud and count % print_freq == 0) {
-      stddev_vol = stddevVol(length,height,length2,height2,width,count);
+      stddev_vol = stddevVol(length,height,
+                             length2,height2,
+                             width,count);
       std::cout << count 
-                << "\nval     : " << curr_vol
-                << " +/- "        << stddev_vol
-                << "\ntol     : " << dvol << "\n\n" << std::flush; 
+                << "\nval   : " << curr_vol
+                << " +/- "      << stddev_vol
+                << "\ntol   : " << dvol << "\n\n" 
+                << std::flush; 
     }
   }
   while ( dvol > tol or count < 10);
-  
-  std::cout << "Converged in: " << count << " iterations. \n";
-  return {curr_vol, stddevVol(length,height,length2,height2,width,count)};
+ 
+  if (loud)
+    std::cout << "Converged in: " << count << " iterations. \n";
+
+  return {curr_vol, 
+          stddevVol(length,height,
+                    length2,height2,
+                    width,count)};
 }
 
 }
