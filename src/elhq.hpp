@@ -81,7 +81,7 @@ struct Ubars {
 private:
   const Us f{};
 public:
-  double operator() (double x) {
+  double operator() (double x) const {
     return f(x);
   }
   template<class Func>
@@ -92,7 +92,7 @@ struct Dbars {
 private:
   const Ds f{};
 public:
-  double operator() (double x) {
+  double operator() (double x) const {
     return f(x);
   }
   template<class Func>
@@ -103,7 +103,7 @@ struct Sbars {
 private:
   const Ss f{};
 public:
-  double operator() (double x) {
+  double operator() (double x) const {
     return f(x);
   }
   template<class Func>
