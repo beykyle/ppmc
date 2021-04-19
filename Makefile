@@ -9,6 +9,7 @@ OBJ_FILES_NOPP := $(filter-out $(EXEC_OBJ_FILE), $(OBJ_FILES))
 TEST_OBJ_FILES := $(patsubst $(TEST_DIR)/%.cpp,$(OBJ_DIR)/test/%.o,$(TEST_FILES))
 CC       := clang++-10
 CPPFLAGS := -std=c++17 -Wall -O3 -MMD
+#CPPFLAGS := -std=c++17 -Wall -O0 -g -MMD
 LDFLAGS  := 
 
 .PHONY: directories
