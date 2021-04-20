@@ -28,11 +28,14 @@ std::pair<double,double>
 Integrate2D(Func f, 
             YBoundLow lower, YBoundUp upper, 
             double x_lower, double x_upper,
-            double tol, 
-            bool loud = false, uint32_t print_freq = 10000) {
+            double tol = 1E-10, 
+            bool loud = false, 
+            uint32_t print_freq = 10000,
+            uint64_t seed = 9057507969885,
+            uint64_t max_count = static_cast<uint64_t>(1E12)) {
   
   // initialize RNG
-  std::mt19937 gen(389648901368); 
+  std::mt19937 gen(seed); 
   Uniform dx(x_lower, x_upper);
   
   // initialize length tallies
@@ -90,7 +93,7 @@ Integrate2D(Func f,
                 << std::flush; 
     }
   }
-  while ( dvol > tol or count < 10);
+  while ( dvol > tol or count < max_count);
  
   if (loud)
     std::cout << "Converged in: " << count << " iterations. \n";
