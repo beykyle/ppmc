@@ -27,6 +27,6 @@ double mc::stddevVol(double length, double height,
   const double l = mean(length,count);
   const double h = mean(height,count);
   const double dl = stddev(length,length2,count);
-  const double dh = stddev(height,length2,count);
+  const double dh = stddev(height,height2,count);
   return width * sqrt(l*l*dh*dh + h*h*dl*dl);
 };
