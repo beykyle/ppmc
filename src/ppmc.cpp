@@ -21,7 +21,7 @@ int main() {
   // this integral was calculated in the high energy limit (m_mu ~ mu_q -> 0),
   // so it diverges at low energy. 
   // We need to use low-energy cutoffs for parton COM frame energy^2 (shat)
-  std::vector<double> Mcut {0.01, 0.1, 1.0}; // Tev
+  std::vector<double> Mcut {0.01, 0.1, 1.0}; // TeV
   
   // set up ELHQ parton distribution functions
   const auto u    = elhq::Uv{} + elhq::Us{};
@@ -43,8 +43,8 @@ int main() {
          [s](double shat) { return shat/s; },
          [ ](double shat) { return 1.;     },
          cutoff*cutoff,s,
-         1E-14,
-         false
+         0,
+         false,100000000,83470834700,1E14
         );
 
     result *=  factor;
