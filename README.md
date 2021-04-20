@@ -9,7 +9,7 @@ make
 ```
 
 ## to calculate a cross section
-Create a file in `src./` with a main function. Using `mc::Integrate2D` and the parton distribution functions in `elhq::`, a variety of tree-level diagrams can be computed. See `src/ppmc.cpp` for an example; calculating the Drell-Yan pp -> μ+μ- cross section for multiple low-energy cutoffs. 
+Create a file in `src/` with a main function. Using `mc::Integrate2D` and the parton distribution functions in `elhq::`, a variety of tree-level hard scattering diagrams can be computed. See `src/ppmc.cpp` for an example; calculating the Drell-Yan pp -> μ+μ- cross section for multiple low-energy cutoffs. 
 
 Add your file (lets call it `src/my_calculation.cpp`) as a target to the `Makefile`:
 
